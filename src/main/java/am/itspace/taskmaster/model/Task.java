@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -20,7 +19,7 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
-    private Date startDate;
+    private String startDate;
     private String deadline;
     @ManyToMany
     @JoinTable(name = "user_task",
@@ -28,7 +27,6 @@ public class Task {
             inverseJoinColumns = @JoinColumn(name = "task_id", referencedColumnName = "id")
     )
     private List<User> users;
-
     @ManyToOne
     private Project project;
     private double logTime;

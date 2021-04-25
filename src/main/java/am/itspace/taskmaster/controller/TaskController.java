@@ -7,7 +7,7 @@ import am.itspace.taskmaster.service.impl.ProjectServiceImp;
 import am.itspace.taskmaster.service.impl.TaskServiceImpl;
 import am.itspace.taskmaster.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,11 +19,12 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
+@Slf4j
+
 public class TaskController {
    private final UserServiceImpl userService;
    private final ProjectServiceImp projectService;
    private final TaskServiceImpl taskService;
-
     @GetMapping("/task/add")
     public String addTask(ModelMap modelMap){
         List<User> users = userService.allUsers(1,20);
@@ -35,6 +36,7 @@ public class TaskController {
     @PostMapping("/task/add")
     public String saveTask(@ModelAttribute Task task){
        taskService.saveTask(task);
+       log.info("Task was added");
        return "redirect:/allTasks";
     }
 
@@ -43,6 +45,7 @@ public class TaskController {
         List<Task> tasks = taskService.allTasks();
         modelMap.addAttribute("tasks", tasks);
         return "allTasks";
+
     }
     @GetMapping("/task/delete")
     public String deleteProject(@RequestParam("id") int id) {

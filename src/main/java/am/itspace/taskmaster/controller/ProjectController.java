@@ -6,6 +6,7 @@ import am.itspace.taskmaster.model.User;
 import am.itspace.taskmaster.service.impl.ProjectServiceImp;
 import am.itspace.taskmaster.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class ProjectController {
@@ -36,6 +37,7 @@ public class ProjectController {
     @PostMapping("/project/add")
     public String saveProject(@ModelAttribute Project project){
         projectService.saveProject(project);
+        log.info("project with {}  name was added ", project.getName());
         return "redirect:/project/all";
     }
     @GetMapping("/project/all")
@@ -48,6 +50,7 @@ public class ProjectController {
     @GetMapping("/project/delete")
     public String deleteProject(@RequestParam("id") int id) {
         projectService.delete(id);
+        log.info("project with {} id was deleted", id );
         return "redirect:/project/all";
     }
 }

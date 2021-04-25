@@ -34,14 +34,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin").hasAnyAuthority("ADMIN")
                 .antMatchers("/user").hasAnyAuthority("EMPLOYER")
                 .antMatchers("/project/add").hasAnyAuthority("ADMIN")
-                .antMatchers("/project/all").hasAnyAuthority("EMPLOYER","ADMIN")
+                .antMatchers("/project/all").hasAnyAuthority("EMPLOYER", "ADMIN")
                 .antMatchers("/user/delete").hasAnyAuthority("ADMIN")
-                .antMatchers("/allUsers").hasAnyAuthority("EMPLOYER","ADMIN")
+                .antMatchers("/allUsers").hasAnyAuthority("EMPLOYER", "ADMIN")
                 .antMatchers("/task/add").hasAnyAuthority("ADMIN")
                 .antMatchers("/task/delete").hasAnyAuthority("ADMIN")
-                .antMatchers("/allTasks").hasAnyAuthority("EMPLOYER","ADMIN");
+                .antMatchers("/allTasks").hasAnyAuthority("EMPLOYER", "ADMIN");
     }
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService)

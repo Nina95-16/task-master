@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>AllProjects</title>
+</head>
+<body>
+<h3>All Projects</h3><br>
+<a href="/successLogin">My profile</a><br>
+<table border="1">
+    <thead>
+    <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Deadline</th>
+        <th>User name, surname</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="project: ${projects}">
+        <td th:text="${project.id}"></td>
+        <td th:text="${project.name}"></td>
+        <td th:text="${project.deadline}"></td>
+        <td th:text="${project.user.name} + ' ' + ${project.user.surname}"></td>
+        <td>
+            <a th:href="@{/project/delete/(id=${project.id})}">Delete</a>
+        </td>
+        <td>
+            <a th:href="@{/project/add/(id=${project.id})}">Edit</a>
+        </td>
+    </tr>
+    </tbody>
+</table><br>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>AllTasks</title>
+</head>
+<body>
+<h3>All Task</h3>
+<a href="/successLogin">My profile</a><br>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>StartDate</th>
+        <th>Deadline</th>
+        <th>Users name</th>
+        <th>Project</th>
+        <th>LogTime</th>
+        <th>Status</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="task: ${tasks}">
+        <td th:text="${task.id}"></td>
+        <td th:text="${task.title}"></td>
+        <td th:text="${task.startDate}"></td>
+        <td th:text="${task.deadline}"></td>
+        <td th:text="${task.getUsers()}"></td>
+        <td th:text="${task.project.name}"></td>
+        <td th:text="${task.logTime}"></td>
+        <td th:text="${task.status}"></td>
+        <td>
+            <a th:href="@{/task/delete/(id=${task.id})}">Delete</a>
+        </td>
+        <td>
+            <a th:href="@{/task/add/(id=${task.id})}">Edit</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
